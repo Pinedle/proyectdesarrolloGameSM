@@ -37,18 +37,15 @@ if (file) {
 
 const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
+    const formData = new FormData();
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('profile_image', profileImage); 
 
     try {
-        const formData = new FormData();
-        formData.append('username', form.username);
-        formData.append('email', form.email);
-        formData.append('password', form.password);
-        formData.append('profileImage', form.profileImage);
-
-        await register(formData);
-    } catch (err) {
-        setError(err.message);
+        const data = await register(formData);
+    } catch (error) {
     }
 };
 

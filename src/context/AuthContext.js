@@ -33,18 +33,18 @@ export const AuthProvider = ({ children }) => {
         }
     }, []);
 
-    const register = async (username, email, password) => {
+    const register = async (formData) => {
         try {
-            const response = await axiosInstance.post('/auth/register', {
-                username,
-                email,
-                password,
-            });
-            return response.data;
+          const response = await axiosInstance.post('/auth/register', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',  
+            }
+          });
+          return response.data;
         } catch (error) {
-            throw new Error(error.response.data.message);
+          throw new Error(error.response.data.message);
         }
-    };
+      };
 
     const login = async (email, password) => {
         try {

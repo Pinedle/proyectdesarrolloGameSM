@@ -22,6 +22,7 @@ const LoginPage = () => {
     setError(null);
     try {
       await login(form.email, form.password);
+      router.push('/users/profile');
     } catch (err) {
       setError(err.message);
     }
